@@ -1,0 +1,44 @@
+
+					<div class="content" id="content_users" ng-controller="communauteCTRL">
+						<h1 class="page-title">La communauté</h1>
+						
+						<section class="section">
+							<h2 class="title">~ Les meilleures cuistots ~</h2>
+							<div class="sort">
+								<p>
+									<span class="span-label">Trier par :</span>
+									<select name="" id="" ng-model="selectOption">
+										<option value="firstname">Ordre alphabétique (A->Z)</option>
+										<option value="-firstname">Ordre alphabétique (Z->A)</option>
+										<option value="-level">Les mieux notés d'abord</option>
+										<option value="level">Les moins bien notés d'abord</option>
+										<option value="-nbreRct">Les plus productifs d'abord</option>
+										<option value="nbreRct">Les moins productifs d'abord</option>
+									</select>
+								</p>
+							</div>
+							<div class="users row">
+								<div class="col-xs-6 col-sm-3 user" ng-repeat="user in communities |orderBy:selectOption |limitTo:dispNbre">
+									<a href="#/communaute_details" ng-click="setUser(user.id)">
+										<img ng-src="{{getSmallImg(user.picture)}}" alt="{{user.firstname}} {{user.surname}}">
+										<div class="text" >
+											<p class="name">{{user.firstname}} {{user.surname}}</p>
+											<p class="level">
+												<span class="stars">
+													<span class="glyphicon glyphicon-star" ng ng-repeat="star in getStars(user.level)"></span>
+												</span>
+												<span class="status">{{user.level |statusFilter}}</span>
+											</p>
+										</div>
+									</a>
+								</div>
+
+							</div>
+							<div class="row showmore">
+								<div class="col-xs-12">
+									<button type="button" class="btn btn_color1" ng-click="dispMore()"><span class="glyphicon glyphicon-chevron-down"></span>Afficher d'avantage</button>
+								</div>
+							</div>
+						</section>
+
+					</div>

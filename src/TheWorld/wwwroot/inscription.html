@@ -1,0 +1,67 @@
+﻿
+<div class="content" id="content_recettes_new" ng-controller="recette_newCTRL">
+
+    <h1 class="page-title">Compléter mon inscription</h1>
+    <section class="section">
+        <form name="signupForm" action="">
+            <div class="row">
+                <div class="col-xs-6">
+                    <p>
+                        <label for="co_user" class="fwb">Identifiant (email)</label>
+                        <input id="co_user" class="wide ng-dirty ng-invalid" type="email" required ng-model="newUsername" placeholder="username@example.com" />
+                    </p>
+                    <p>
+                        <label for="co_pwd" class="fwb">Mot de passe</label>
+                        <input id="co_pwd" class="wide ng-dirty ng-invalid" type="password" required ng-model="newPassword" placeholder="tape your password here" />
+                   
+                    </p>
+                    <p class="line">
+                        <label for="">Prénom</label>
+                        <input type="text" class="mb0 wide" ng-model="firstname" placeholder="firstname" required>
+                    </p>
+                    <p class="line">
+                        <label for="">Nom</label>
+                        <input type="text" class="mb0 wide" ng-model="surname" placeholder="surname" required>
+                    </p>
+                    <p class="line">
+                        <label for="">Ville</label>
+                        <input type="text" class="mb0 wide" ng-model="city" placeholder="city" required>
+                    </p>
+                    <p class="line">
+                        <label for="">Année de naissance</label>
+                        <input type="text" class="mb0 wide" ng-model="birth" placeholder="birth" required>
+                    </p>
+                    <p class="line">
+                        <label for="">Level</label>
+                        <select name="" id="" ng-model="selectLevel" required>
+                            <option value="3">3</option>
+                            <option value="2">2</option>
+                            <option value="1">1</option>
+                        </select>
+                    </p>
+                    <p class="line">
+                        <label for="">bio</label>
+                        <textarea id="recette_desc" class="resizable mb0 wide" ng-model="bio" required></textarea>
+                    </p>
+                </div>
+                <div class="col-xs-6">
+                    <p class="line">
+                        <label for="">Photo de la recette</label>
+                        <input type="file" class="mb0">
+                    </p>
+                    <p class="line ac">
+                        <img class="current_img" src="img/recette_placeholder.jpg" alt="Visuel recette">
+                    </p>
+                </div>
+                
+
+                
+                <div class="col-xs-12 ac">
+                    <button type="button" class="btn btn_color3 recette_save" ng-disabled="signupForm.$invalid" ng-click="submit()"><span class="glyphicon glyphicon-ok mr0"></span><span>Valider ma recette</span></button>
+                </div>
+
+            </div>
+        </form>
+    </section>
+</div>
+

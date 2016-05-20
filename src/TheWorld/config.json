@@ -1,0 +1,5 @@
+{
+  "Data": {
+    "NgCookingContextConnection": "Server=DESKTOP-LI1BB0E;Database=NgCookingDB;Trusted_Connection=True;MultipleActiveResultSets=True;"
+  }
+}  

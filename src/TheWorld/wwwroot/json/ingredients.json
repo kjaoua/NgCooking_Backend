@@ -1,0 +1,330 @@
+[
+	{
+		"id": "pomme-de-terre",
+		"name": "Pomme de terre",
+		"isAvailable": true,
+		"picture": "img/ingredients/pomme-de-terre.jpg",
+		"category": "vegetable",
+		"calories": 140
+	},
+	{
+		"id": "boeuf",
+		"name": "Boeuf",
+		"isAvailable": true,
+		"picture": "img/ingredients/boeuf.jpg",
+		"category": "meat",
+		"calories": 200
+	},
+	{
+		"id": "poulet",
+		"name": "Poulet",
+		"isAvailable": true,
+		"picture": "img/ingredients/poulet.jpg",
+		"category": "meat",
+		"calories": 180
+	},
+	{
+		"id": "citron",
+		"name": "Citron",
+		"isAvailable": true,
+		"picture": "img/ingredients/citron.jpg",
+		"category": "fruit",
+		"calories": 110
+	},
+	{
+		"id": "sucre",
+		"name": "Sucre",
+		"isAvailable": true,
+		"picture": "img/ingredients/sucre.jpg",
+		"category": "other",
+		"calories": 600
+	},
+	{
+		"id": "farine",
+		"name": "Farine",
+		"isAvailable": true,
+		"picture": "img/ingredients/farine.jpg",
+		"category": "other",
+		"calories": 310
+	},
+	{
+		"id": "tomate",
+		"name": "Tomate",
+		"isAvailable": true,
+		"picture": "img/ingredients/tomate.jpg",
+		"category": "fruit",
+		"calories": 80
+	},
+	{
+		"id": "carotte",
+		"name": "Carotte",
+		"isAvailable": true,
+		"picture": "img/ingredients/carotte.jpg",
+		"category": "vegetable",
+		"calories": 65
+	},
+	{
+		"id": "ananas",
+		"name": "Ananas",
+		"isAvailable": true,
+		"picture": "img/ingredients/ananas.jpg",
+		"category": "fruit",
+		"calories": 95
+	},
+	{
+		"id": "aubergine",
+		"name": "Aubergine",
+		"isAvailable": true,
+		"picture": "img/ingredients/aubergine.jpg",
+		"category": "vegetable",
+		"calories": 50
+	},
+	{
+		"id": "banane",
+		"name": "Banane",
+		"isAvailable": true,
+		"picture": "img/ingredients/banane.jpg",
+		"category": "fruit",
+		"calories": 210
+	},
+	{
+		"id": "biere",
+		"name": "Bière",
+		"isAvailable": true,
+		"picture": "img/ingredients/biere.jpg",
+		"category": "alcohol",
+		"calories": 140
+	},
+	{
+		"id": "brocolis",
+		"name": "Brocolis",
+		"isAvailable": true,
+		"picture": "img/ingredients/brocolis.jpg",
+		"category": "vegetable",
+		"calories": 80
+	},
+	{
+		"id": "citron-vert",
+		"name": "Citron vert",
+		"isAvailable": true,
+		"picture": "img/ingredients/citron-vert.jpg",
+		"category": "fruit",
+		"calories": 80
+	},
+	{
+		"id": "colin",
+		"name": "Colin",
+		"isAvailable": true,
+		"picture": "img/ingredients/colin.jpg",
+		"category": "fish",
+		"calories": 80
+	},
+	{
+		"id": "creme",
+		"name": "Crème",
+		"isAvailable": true,
+		"picture": "img/ingredients/creme.jpg",
+		"category": "dairy-product",
+		"calories": 80
+	},
+	{
+		"id": "crevettes",
+		"name": "Crevettes",
+		"isAvailable": true,
+		"picture": "img/ingredients/crevettes.jpg",
+		"category": "seafood",
+		"calories": 100
+	},
+	{
+		"id": "echalotte",
+		"name": "Echalotte",
+		"isAvailable": true,
+		"picture": "img/ingredients/echalotte.jpg",
+		"category": "vegetable",
+		"calories": 30
+	},
+	{
+		"id": "fraise",
+		"name": "Fraise",
+		"isAvailable": true,
+		"picture": "img/ingredients/fraise.jpg",
+		"category": "fruit",
+		"calories": 130
+	},
+	{
+		"id": "glace",
+		"name": "Glace",
+		"isAvailable": true,
+		"picture": "img/ingredients/glace.jpg",
+		"category": "other",
+		"calories": 0
+	},
+	{
+		"id": "gruyere",
+		"name": "Gruyère",
+		"isAvailable": true,
+		"picture": "img/ingredients/gruyere.jpg",
+		"category": "cheese",
+		"calories": 430
+	},
+	{
+		"id": "huile-olive",
+		"name": "Huile d'olive",
+		"isAvailable": true,
+		"picture": "img/ingredients/huile-olive.jpg",
+		"category": "other",
+		"calories": 850
+	},
+	{
+		"id": "huile-tournesol",
+		"name": "Huile-tournesol",
+		"isAvailable": true,
+		"picture": "img/ingredients/huile-tournesol.jpg",
+		"category": "other",
+		"calories": 900
+	},
+	{
+		"id": "jambon",
+		"name": "Jambon",
+		"isAvailable": true,
+		"picture": "img/ingredients/jambon.jpg",
+		"category": "meat",
+		"calories": 270
+	},
+	{
+		"id": "kiwi",
+		"name": "Kiwi",
+		"isAvailable": true,
+		"picture": "img/ingredients/kiwi.jpg",
+		"category": "fruit",
+		"calories": 145
+	},
+	{
+		"id": "lait",
+		"name": "Lait",
+		"isAvailable": true,
+		"picture": "img/ingredients/lait.jpg",
+		"category": "dairy-product",
+		"calories": 500
+	},
+	{
+		"id": "mais",
+		"name": "Maïs",
+		"isAvailable": true,
+		"picture": "img/ingredients/mais.jpg",
+		"category": "cereal",
+		"calories": 160
+	},
+	{
+		"id": "noix-de-coco",
+		"name": "Noix de coco",
+		"isAvailable": true,
+		"picture": "img/ingredients/noix-de-coco.jpg",
+		"category": "fruit",
+		"calories": 100
+	},
+	{
+		"id": "oeuf",
+		"name": "Oeuf",
+		"isAvailable": true,
+		"picture": "img/ingredients/oeuf.jpg",
+		"category": "other",
+		"calories": 450
+	},
+	{
+		"id": "olives",
+		"name": "Olives",
+		"isAvailable": true,
+		"picture": "img/ingredients/olives.jpg",
+		"category": "fruit",
+		"calories": 490
+	},
+	{
+		"id": "orange",
+		"name": "Orange",
+		"isAvailable": true,
+		"picture": "img/ingredients/orange.jpg",
+		"category": "fruit",
+		"calories": 105
+	},
+	{
+		"id": "pamplemousse",
+		"name": "Pamplemousse",
+		"isAvailable": true,
+		"picture": "img/ingredients/pamplemousse.jpg",
+		"category": "fruit",
+		"calories": 100
+	},
+	{
+		"id": "pasteque",
+		"name": "Pastèque",
+		"isAvailable": true,
+		"picture": "img/ingredients/pasteque.jpg",
+		"category": "fruit",
+		"calories": 40
+	},
+	{
+		"id": "poire",
+		"name": "Poire",
+		"isAvailable": true,
+		"picture": "img/ingredients/poire.jpg",
+		"category": "vegatble",
+		"calories": 65
+	},
+	{
+		"id": "pomme",
+		"name": "Pomme",
+		"isAvailable": true,
+		"picture": "img/ingredients/pomme.jpg",
+		"category": "fruit",
+		"calories": 55
+	},
+	{
+		"id": "raisin",
+		"name": "Raisin",
+		"isAvailable": true,
+		"picture": "img/ingredients/raisin.jpg",
+		"category": "fruit",
+		"calories": 90
+	},
+	{
+		"id": "salade",
+		"name": "Salade",
+		"isAvailable": true,
+		"picture": "img/ingredients/salade.jpg",
+		"category": "vegetable",
+		"calories": 25
+	},
+	{
+		"id": "saumon",
+		"name": "saumon",
+		"isAvailable": true,
+		"picture": "img/ingredients/Saumon.jpg",
+		"category": "fish",
+		"calories": 250
+	},
+	{
+		"id": "thon",
+		"name": "Thon",
+		"isAvailable": true,
+		"picture": "img/ingredients/thon.jpg",
+		"category": "fish",
+		"calories": 180
+	},
+	{
+		"id": "toast",
+		"name": "Toast",
+		"isAvailable": true,
+		"picture": "img/ingredients/toast.jpg",
+		"category": "autre",
+		"calories": 160
+	},
+	{
+		"id": "vin-rouge",
+		"name": "Vin Rouge",
+		"isAvailable": true,
+		"picture": "img/ingredients/vin-rouge.jpg",
+		"category": "alcohol",
+		"calories": 70
+	}
+]

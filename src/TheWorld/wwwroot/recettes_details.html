@@ -1,0 +1,129 @@
+
+					<div class="content" id="content_recettes_details" ng-controller="recettes_detailsCTRL">
+
+						<section class="section">
+							<div class="row">
+								<div class="col-xs-4">
+									<img class="recette_img" ng-src="{{recette.picture}}" alt="{{recette.id}}">
+								</div>
+								<div class="col-xs-8">
+									<h1 class="rec_name">{{recette.name}}</h1>
+									<p class="rec_note">
+										<span class="stars">
+											<span class="star glyphicon glyphicon-heart" ng-repeat="star in getStars(recette.averageMark)"></span>
+
+										</span>
+										<span class="notes">| {{recette.averageMark |number:1}}/5 - {{recette.commentsNbr}} votes</span>
+									</p>
+									<div class="ingredients_list">
+										<p class="list-title">Ingrédients</p>
+										<ul class="list">
+											<li class="item" ng-repeat="ing in recette.ingredientsList ">
+												<img class="item-img" ng-src="{{ing.picture}}" alt="{{ing.name}}">
+												<p class="item-name" title="tomate">{{ing.name}}</p>
+											</li>
+
+										</ul>
+									</div>
+									<p class="rec_cal">Valeur calorique <span class="for">(100g)</span> : <span class="val">{{getCalories()| number:0}} kcal</span></p>
+								</div>
+							</div>
+						</section>
+
+						<section class="section">
+							<div class="row">
+								<div class="col-xs-12">
+									<h2 class="overline-title"><span class="text">Préparation</span></h2>
+								</div>
+								<div class="col-xs-12">
+									{{recette.preparation}}
+								</div>
+							</div>
+						</section>
+
+						<section class="section">
+							<div class="row">
+								<div class="col-xs-12">
+									<h2 class="overline-title"><span class="text">Commentaires</span></h2>
+								</div>
+								<div class="col-xs-12 col-sm-6" ng-show="isConnected">
+									<div class="panel">
+										<div class="filters">
+											<h3 class="panel_title">Donnez-nous votre avis !</h3>
+											<form  name="addCommentForm" action="" novalidate>
+												<div class="filter">
+													<p><label for="">Notez cette recette</label></p>
+													<p>
+														<select name="" id="" ng-model="selectNote" ng-change="setValidationStatus(false)" required>
+															<option value="5">5</option>
+															<option value="4">4</option>
+															<option value="3">3</option>
+															<option value="2">2</option>
+															<option value="1">1</option>
+														</select>
+													</p>
+												</div>
+												<div class="filter">
+													<p><label for="">Le titre de votre commentaire</label></p>
+													<p><input type="text" class=" mb0 wide" placeholder="ex: Amazingue !" ng-model="commentName" ng-change="setValidationStatus(false)" required></p>
+												</div>
+												<div class="filter">
+													<p><label for="">Votre commentaire</label></p>
+													<textarea name="" id="" class="mb0 wide" ng-model="comment" ng-change="setValidationStatus(false)" placeholder="ex: Franchement cette NgRecette, c’est de la bombe. Le genre de saveurs qui t’éveillent les papilles, t’as vu ! Woula, j’ai kiffé" required></textarea>
+												</div>
+												<div class="ar">
+													<input type="submit" class="btn btn_color1" ng-disabled="addCommentForm.$invalid" ng-click="setValidationStatus(true)" value="Poster !">
+												</div>
+												<!-- Afficher au clic sur "valider ma recette" lorsque tout s'est bien déroulé -->
+												<div class="col-xs-12" ng-show="validationStatus">
+													<p class="ac mt2 tb">
+														<span class="glyphicon glyphicon-thumbs-up color3"></span>
+														<span>Votre commentaire a bien été ajouté !</span>
+													</p>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-6">
+									<ul class="comments">
+										<li class="comment" ng-repeat="comment in recette.comments|limitTo:5">
+											<p class="name">{{comment.title}}<span class="note">{{comment.mark}}/5</span></p>
+											<p class="by">par <a href="#/communaute_details" ng-click="setUser(comment.userId)">{{getUserName(comment.userId)}}</a></p>
+											<p class="text">{{comment.comment}}</p>
+										</li>
+
+									</ul>
+									<div class="row showmore">
+										<div class="col-xs-12">
+											<button type="button" class="btn btn_grey" ng-click="dispMore()" ng-show="recette.comments.length>5"><span class="glyphicon glyphicon-chevron-down"></span>Afficher d'avantage</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+
+						<section class="section" ng-controller="recettesCTRL">
+							<h2 class="title">~ Vous aimerez aussi... ~</h2>
+							<div class="recettes row">
+								<div class="col-xs-6 col-sm-3 recette" ng-repeat="rcette in recettes |orderBy:rcette.calories|limitTo:4 ">
+									<a href="#/recettes_details" ng-click="setRecette(rcette.id)">
+										<img ng-src="{{rcette.picture}}" alt="{{rcette.name}}">
+										<div class="top" title="note">
+												<span class="note" >
+													<span class="glyphicon glyphicon-heart" ng-repeat="note in getTable(rcette.averageMark)"></span>
+													{{rcette.averageMark |number:1}}/5
+												</span>
+
+
+										</div>
+										<div class="bot">
+											<p class="name">{{rcette.name}}</p>
+										</div>
+									</a>
+								</div>
+
+							</div>
+						</section>
+						
+					</div>

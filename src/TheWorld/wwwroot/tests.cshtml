@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Test Page";
+}
+<div class="content" id="content_communaute_details" ng-controller="communaute_detailsCTRL">
+    <section class="section details">
+        <div class="row">
+            <div class="col-xs-3 col-sm-5">
+                <div class="avatar-wrap">
+                    <img class="avatar" ng-src="{{user.picture}}" alt="{{user.firstname}} {{user.surname}}">
+                </div>
+            </div>
+            <div class="col-xs-9 col-sm-7">
+                <div class="infos">
+                    <h1 class="name">{{user.surname}} {{user.firstname}}</h1>
+                    <p class="level">
+                        <span class="stars" ng-repeat="star in getStars(user.level)">
+                            <span class="glyphicon glyphicon-star"></span>
+                        </span>
+                        <span class="status">{{user.level|statusFilter}}</span>
+                    </p>
+                    <p class="city"><span class="fwb">Ville : </span>{{user.city}}</p>
+                    <p class="age"><span class="fwb">Age : </span>{{age}}</p>
+                    <p class="shared"><span class="fwb">{{user.surname}}</span> a partagé <span class="nb">{{nbRct}} recettes</span></p>
+                    <p class="bio"><span class="fwb">BIO : </span>{{user.bio}}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Afficher le bloc ci-dessous uniquement si lutilisateur connecté se rend sur sa propre page -->
+    <section class="section newrecette" ng-show="isConnected">
+        <div class="row">
+            <div class="col-xs-12">
+                <p class="c">Vous en avez sous la toque ?!</p>
+                <p class="b">
+                    <a href="#/recettes_new" class="btn btn_color1"><span class="glyphicon glyphicon-plus-sign"></span><span>Créez une nouvelle recette</span></a>
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <h2 class="title">~ Les recettes de {{user.firstname}} ~</h2>
+        <div class="recettes row">
+            <div class="col-xs-6 col-sm-3 recette" ng-repeat="rct in userRecettes">
+                <a href="#/recettes_details">
+                    <img ng-src="{{rct.picture}}" alt="{{rct.name}}">
+                    <div class="top" title=" note: {{averageMark(rct)}} ">
+                        <span class="note">
+                            <span class="glyphicon glyphicon-heart" ng-repeat="n in getStars(averageMark(rct))"></span>
+                            {{averageMark(rct) | number:1}}/5
+                        </span>
+                    </div>
+                    <div class="bot">
+                        <p class="name">{{rct.name}}</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+</div>
