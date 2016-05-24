@@ -4,13 +4,19 @@ ngCooking.factory('postJsonData', function ($http) {
     // obj.test = " test retour réussi";
     var postdata = function (url,data) {
         // getting users data from .json file
-        return $http.post(url,data);
+        //return $.ajax({
+        //    type: "POST",
+        //    data: JSON.stringify(data),
+        //    url: url,
+        //    contentType: "application/json"
+        //});
+        return $http.post(url, JSON.stringify(data));
     };
-    var getVarPath = function (file) { return getdata(dataPath + file) };
+    var getVarPath = function (file,data) { return postdata(dataPath + file,data) };
     return {
-        postCommunity: function () { return getVarPath('Communities'); },
-        postCategories: function () { return getVarPath('Categories'); },
-        postIngredients: function () { return getVarPath('Ingredients'); },
-        postRecettes: function () { return getVarPath('Recettes'); },
+        postCommunity: function (data) { return getVarPath('Communities',data); },
+        postCategories: function (data) { return getVarPath('Categories',data); },
+        postIngredients: function (data) { return getVarPath('Ingredients',data); },
+        postRecettes: function (data) { return getVarPath('Recettes',data); },
     };
 });

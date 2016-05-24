@@ -199,7 +199,7 @@ ngCooking.controller("communaute_detailsCTRL", function($scope,$http,getJsonData
     });
     $scope.getStars = function(number){
         var table=[];
-        for (var i=0;i<number;i++){
+        for (var i=0 ; i<number ;i++){
             table.push(i);
         }
         return table;
@@ -213,7 +213,7 @@ ngCooking.controller("communaute_detailsCTRL", function($scope,$http,getJsonData
 ngCooking.controller("ingredientsCTRL", function($scope,getJsonData) {
     getJsonData.getIngredients().then(function(response)
     {   $scope.dispNbre=10;
-        $scope.ingredients = response.data ;
+        $scope.ingredients = response.data;
 
 
     });
@@ -243,8 +243,8 @@ ngCooking.controller("ingredientsCTRL", function($scope,getJsonData) {
 ngCooking.controller("recettesCTRL", function($scope, $http,getJsonData,getRecetteMark,$cookies,$route) {
     getJsonData.getRecettes().then(function(response)
     {
-        $scope.recettes =response.data ;
-        for(var i = 0;i<$scope.recettes.length;i++){
+        $scope.recettes =response.data;
+        for(var i = 0 ; i<$scope.recettes.length ;i++){
             $scope.recettes[i].averageMark = getRecetteMark.averageMark($scope.recettes[i]);
         }
     });
@@ -281,11 +281,11 @@ ngCooking.controller("recettes_detailsCTRL", function($scope,getObjectService, $
 
     getJsonData.getRecettes().then(function(response)
     {
-        $scope.recettes =response.data ;
-        for(var k = 0;k<$scope.recettes.length;k++){
+        $scope.recettes =response.data;
+        for(var k = 0 ;k<$scope.recettes.length ;k++){
             $scope.recettes[k].averageMark = getRecetteMark.averageMark($scope.recettes[k]);
         }
-        for(var i = 0;i<$scope.recettes.length;i++){
+        for(var i = 0 ; i<$scope.recettes.length ; i++){
             if($scope.recettes[i].comments){
                 $scope.recettes[i].commentsNbr =$scope.recettes[i].comments.length
 
@@ -485,5 +485,64 @@ ngCooking.controller("monProfilCTRL", function($scope,$cookies,$http, getObjectS
 
 ngCooking.controller("HomeController", function HomeController($scope, $http,getJsonData,getRecetteMark,$cookies){
 
+
+});
+ngCooking.controller("inscriptionCTRL", function ($scope, $http, $location, $cookies, $rootScope, fileUpload, $route, postJsonData) {
+    $scope.newUsername = $cookies.get('newUsername');
+    $scope.newPassword = $cookies.get('newPassword');
+    $scope.newUser = [{}];
+    $scope.errorInscriptionMessage = "";
+    $scope.validationStatus = "notMontionned";
+    $scope.disableSubmit = false;
+    $scope.uploadFile = function () {
+        var file = $scope.myFile;
+
+        console.log('file is ');
+        console.dir(file);
+
+        var uploadUrl = "/api/Communities";
+        fileUpload.uploadFileToUrl(file, uploadUrl);
+    };
+    $scope.submit = function () {
+        $scope.newUser = [{
+            "firstname": $scope.firstname,
+            "surname": $scope.surname,
+
+            "email": $scope.newUsername,
+            "password": $scope.newPassword,
+            "level": $scope.selectLevel,
+            "picture": "img/users/" + $scope.myFile.name,
+            "city": $scope.city,
+            "birth": $scope.birth,
+            "bio": $scope.bio
+        }];
+        console.debug($scope.newUser);
+        $scope.disableSubmit = true;
+        postJsonData.postCommunity($scope.newUser).success(function (res) {
+            console.log('res', res);
+            if (res) {
+                //console.log('connexion reussi pour: ' + $scope.firstname + ' ' + $scope.surname);
+               $scope.validationStatus = "validated";
+               
+               $scope.disableSubmit = true;
+                console.log('inscription reussi pour: ' + $scope.firstname + ' ' + $scope.surname);
+                console.log($scope.validationStatus);
+               
+            }
+            else {
+                $scope.validationStatus = "notvalidated";
+                $scope.errorInscriptionMessage = "Merci de vérifier les données entrées";
+
+                $scope.disableSubmit = false;
+
+            }
+        }).error(function (res) {
+            $scope.validationStatus = "notvalidated";
+            $scope.disableSubmit = false;
+
+            $scope.errorInscriptionMessage = "Merci de vérifier les données entrées: veuillez entrez un nouveau email";
+        });
+    };
+    
 
 });

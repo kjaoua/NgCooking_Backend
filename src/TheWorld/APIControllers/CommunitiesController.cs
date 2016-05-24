@@ -20,9 +20,9 @@ namespace NgCooking.APIControllers
         #region get Communaute Method
         public JsonResult Get()
         {
-             CommunauteManager = new EFRepository<Communaute>(_context);
+            CommunauteManager = new EFRepository<Communaute>(_context);
             var Communaute = CommunauteManager.GetAll().ToList();
-         
+
 
             return Json(Communaute);
         }
@@ -35,23 +35,32 @@ namespace NgCooking.APIControllers
             CommunauteManager = new EFRepository<Communaute>(_context);
             try
             {
-                
-                   // var commun = Mapper.Map<Communaute>(newCommunaute);
 
-                    CommunauteManager.AddRange(newCommunaute);
+                // var commun = Mapper.Map<Communaute>(newCommunaute);
+                foreach (var Comm in newCommunaute)
+                {
+                    if (CommunauteManager.GetAll().Any(a => a.email == Comm.email))
+                    {
+                        Response.StatusCode = (int)HttpStatusCode.BadRequest;
 
-               
+                        return Json(false);
+                    }
+
+                }
+                CommunauteManager.AddRange(newCommunaute);
+
+
                 CommunauteManager.Save();
                 Response.StatusCode = (int)HttpStatusCode.Created;
                 return Json(true);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
 
                 return Json(new { message = e.InnerException });
             }
-            
+
         }
         #endregion
     }

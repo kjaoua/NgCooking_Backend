@@ -9,8 +9,8 @@ ngCooking.controller("loginController", function loginController($scope, $locati
     $scope.isConnected = $cookies.get('auth') != undefined ? $cookies.get('auth') : false;
     $scope.errorMessage = '';
     $scope.errorInscriptionMessage = '';
-    $scope.userSurName = '';
-    $scope.userFirstName = ''; 
+    $scope.userSurName = $cookies.get('userSurName');
+    $scope.userFirstName = $cookies.get('userFirstName') ;
     $scope.newUsername = '';
     $scope.newPassword = '';
     $scope.hideLoginError = true;
@@ -45,7 +45,7 @@ ngCooking.controller("loginController", function loginController($scope, $locati
         var userFound = false;
 
         if ($scope.newPassword != $scope.validPassword) {
-            $scope.errorInscriptionMessage = 'error inscription :mots de passes non conforme';
+            $scope.errorInscriptionMessage = 'Mots de passes non conforme';
             $scope.validationStatus = "notValidated";
             return false;
         }
@@ -68,7 +68,7 @@ ngCooking.controller("loginController", function loginController($scope, $locati
                 $scope.validationStatus = "validated";
 
                 $location.path('#/inscription');
-                $rootScope.$apply();
+                //$rootScope.$apply();
                 $scope.hideLogin = true;
                 $route.reload();
                 return true;
@@ -123,8 +123,4 @@ ngCooking.controller("loginController", function loginController($scope, $locati
     };
 
 
-});
-ngCooking.controller("inscriptionController", function loginController($scope, $location, $cookies, $rootScope) {
-    $scope.newUsername = $cookies.get('newUsername');
-    $scope.newPassword = $cookies.get('newPassword');
 });
