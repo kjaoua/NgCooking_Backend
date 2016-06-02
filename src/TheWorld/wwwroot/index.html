@@ -2,204 +2,207 @@
 <html lang="fr" ng-app="ngCooking" ng-controller="loginController">
 
 <head>
-<meta charset="utf-8" />
-<title>NgCooking</title>
+    <meta charset="utf-8" />
+    <title>NgCooking</title>
 
-<meta name="description" content="" />
-<meta name="keywords" content="" />
-<meta name="author" content="c17 engineering" />
-<meta name="copyright" content="c17 engineering" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="c17 engineering" />
+    <meta name="copyright" content="c17 engineering" />
 
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="HandheldFriendly" content="true" />
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, minimal-ui" />
-<meta name="apple-mobile-web-app-title" content="c17 engineering, recettes de cuisine à partager">
-<meta name="mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, minimal-ui" />
+    <meta name="apple-mobile-web-app-title" content="c17 engineering, recettes de cuisine à partager">
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
 
-<link rel="shortcut icon" href="img/favicon.png" />
-<link rel="image_src" href="img/favicon.png"/>
-<link rel="icon" type="image/png" href="img/favicon.png"/>
+    <link rel="shortcut icon" href="img/favicon.png" />
+    <link rel="image_src" href="img/favicon.png" />
+    <link rel="icon" type="image/png" href="img/favicon.png" />
 
-<meta name="robots" content="noindex, nofollow" />
+    <meta name="robots" content="noindex, nofollow" />
 
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
 
-<link href="css/reset.css" rel="stylesheet" type="text/css" />
-<link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/reset.css" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
 
-<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 
 </head>
 
 <body>
-<div id="wrapper" >
-	<!-- HEADER  -->
-	<header id="header" ng-controller="recettesCTRL">
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-12">
-					<a href="#/" class="logo">
-						<img src="img/logo_header.png" alt="">
-					</a>
-					<div class="desc">
-						<p>Partagez vos meilleures recettes avec<br/>la communauté NgCooking</p>
-						<p><a class="link" href="#/recettes"><strong>{{recettes.length}} recettes</strong> à découvrir !</a></p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
-	<!-- HEADER  -->
-	<main id="main" ng-controller="homeCTRL" >
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-3">
-					<!-- NAV BAR  -->
-					<nav id="nav">
-						<ul class="menu">
-							<li ng-repeat="page in Pages"  class="{{page.class}}" ng-class="{active: page == pageCourante}"  >
-								<a ng-click='selectPage(page)' href={{page.ref}}>{{page.name}}</a>
-							</li>
-						</ul>
-						<div class="account-area">
-							<button type="button" class="button connect" ng-hide="isConnected" data-popin-open="connect_popin"><span class="icon"></span>Connexion</button>
-							<a  ng-hide="!isConnected" href="#/monProfil" class="button account" ><span class="icon"></span>Mon profil</a>
-							<button type="button" class="button deconnect" ng-hide="!isConnected" ng-click="discnx()" href="#/"><span class="glyphicon glyphicon-off">
-							</span>Deconnexion</button>
-						</div>
-					</nav>
-					<!-- NAV BAR  -->
-				</div>
-				<!-- CONTENT PAGE  -->
-				<div class="col-xs-9">
-					<div ng-view></div>
-				</div>
-				<!-- CONTENT PAGE  -->
-
-			</div>
-		</div>
-	</main>
-	<!-- FOOTER  -->
-
-	<footer id="footer">
-		<div class="container">
-			<div class="row cuisto-img-wrap">
-				<div class="col-xs-3">
-					<div class="cuisto-img"></div>
-				</div>
-				<div class="col-xs-9">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse optio repellat temporibus molestiae ducimus quibusdam eum maiores voluptatum sapiente reprehenderit. Est, modi, tenetur. Tempora perferendis eveniet unde numquam cupiditate nam?</p>
-					<div class="hr"></div>
-					<p class="copyright">copyright @ngcooking 2015-2016</p>
-				</div>
-			</div>
-
-		</div>
-	</footer>
-	<!-- FOOTER  -->
-</div>
-
-<div class="popin " data-popin="connect_popin"  ng-hide="isConnected">
-	<div class="popin-content">
-		<div class="popin-scroll">
-			<p class="popin-title" ng-click="setHideLogin()">Connexion</p>
-			<form action="" name="loginform" novalidate ng-hide="hideLogin">
-				<p>
-					<label for="co_user" class="fwb">Identifiant (email)</label>
-					<input id="co_user" class="wide ng-dirty ng-invalid" type="email" required ng-model="username" placeholder="username@example.com"/>
-				</p>
-				<p>
-					<label for="co_pwd" class="fwb">Mot de passe</label>
-					<input id="co_pwd" class="wide ng-dirty ng-invalid" type="password" required ng-model="password" placeholder="tape your password here"/>
-					
-				</p>
-				<p class="ac nm mt2">
-					<button type="submit" class="btn btn_big btn_color1" ng-disabled="loginform.$invalid" ng-click="submit()"  ><span class="glyphicon glyphicon-ok"></span><span class="fwb uc"></span>Valider</button>
-				</p>
-                <!-- Afficher au clic sur "valider ma recette" si certains éléments sont manquants -->
-                <div class="col-xs-12" ng-hide="hideLoginError" >
-                    <p class="ac mt2 tb">
-                        <span class="glyphicon glyphicon-exclamation-sign color2"></span>
-                        <span>Woops ! erreur inscription</span>
-                    </p>
-                    <p class="ac">{{errorMessage}}</p>
+    <div id="wrapper">
+        <!-- HEADER  -->
+        <header id="header" ng-controller="recettesCTRL">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <a href="#/" class="logo">
+                            <img src="img/logo_header.png" alt="">
+                        </a>
+                        <div class="desc">
+                            <p>Partagez vos meilleures recettes avec<br />la communauté NgCooking</p>
+                            <p><a class="link" href="#/recettes"><strong>{{recettes.length}} recettes</strong> à découvrir !</a></p>
+                        </div>
+                    </div>
                 </div>
-			</form>
-            <p class="popin-title" ng-click="setHideInsc()">Inscrivez-vous</p>
-            <form action="" name="inscriptionform" novalidate ng-hide="hideIscription">
-                <p>
-                    <label for="co_user" class="fwb">Identifiant (email)</label>
-                    <input id="co_user" class="wide ng-dirty ng-invalid" type="email" required ng-model="newUsername" placeholder="username@example.com" />
-                </p>
-                <p>
-                    <label for="co_pwd" class="fwb">Mot de passe</label>
-                    <input id="co_pwd" class="wide ng-dirty ng-invalid" type="password" required ng-model="newPassword" placeholder="tape your password here" />
-                    <label for="co_pwd" class="fwb">Valider votre mot de passe</label>
-                    <input id="co_pwd" class="wide ng-dirty ng-invalid" type="password" required ng-model="validPassword" placeholder="valid your password here" />
-                </p>
-                <p class="ac nm mt2">
-                    <button type="submit" class="btn btn_big btn_color1" ng-disabled="inscriptionform.$invalid" ng-click="submitInscription()"><span class="glyphicon glyphicon-ok"></span><span class="fwb uc"></span>Inscription</button>
-                </p>
-                <!-- Afficher au clic sur "valider ma recette" lorsque tout s'est bien déroulé -->
-                <div class="col-xs-12" ng-show="validationStatus === 'validated'">
-                    <p class="ac mt2 tb">
-                        <span class="glyphicon glyphicon-thumbs-up color3"></span>
-                        <span>Votre inscription est pris en compte: veuillez remplir votre profil !</span>
-                    </p>
-                    <p class="ac">
-                        <a class="btn btn_color1 btn_continuer" href="#/inscription"><span class="glyphicon glyphicon-cutlery"></span><span>Continuer mon inscription</span></a>
-                    </p>
+            </div>
+        </header>
+        <!-- HEADER  -->
+        <main id="main" ng-controller="homeCTRL">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <!-- NAV BAR  -->
+                        <nav id="nav">
+                            <ul class="menu">
+                                <li ng-repeat="page in Pages" class="{{page.class}}" ng-class="{active: page == pageCourante}">
+                                    <a ng-click='selectPage(page)' href={{page.ref}}>{{page.name}}</a>
+                                </li>
+                            </ul>
+                            <div class="account-area">
+                                <button type="button" class="button connect" ng-hide="isConnected" data-popin-open="connect_popin"><span class="icon"></span>Connexion</button>
+                                <a ng-hide="!isConnected" href="#/monProfil" class="button account"><span class="icon"></span>Mon profil</a>
+                                <button type="button" class="button deconnect" ng-hide="!isConnected" ng-click="discnx()" href="#/">
+                                    <span class="glyphicon glyphicon-off">
+                                    </span>Deconnexion
+                                </button>
+                            </div>
+                        </nav>
+                        <!-- NAV BAR  -->
+                    </div>
+                    <!-- CONTENT PAGE  -->
+                    <div class="col-xs-9">
+                        <div ng-view></div>
+                    </div>
+                    <!-- CONTENT PAGE  -->
+
                 </div>
-                <!-- Afficher au clic sur "valider ma recette" si certains éléments sont manquants -->
-                <div class="col-xs-12" ng-show="validationStatus === 'notValidated'">
-                    <p class="ac mt2 tb">
-                        <span class="glyphicon glyphicon-exclamation-sign color2"></span>
-                        <span>Woops ! erreur inscription</span>
-                    </p>
-                    <p class="ac">{{errorInscriptionMessage}}</p>
+            </div>
+        </main>
+        <!-- FOOTER  -->
+
+        <footer id="footer">
+            <div class="container">
+                <div class="row cuisto-img-wrap">
+                    <div class="col-xs-3">
+                        <div class="cuisto-img"></div>
+                    </div>
+                    <div class="col-xs-9">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse optio repellat temporibus molestiae ducimus quibusdam eum maiores voluptatum sapiente reprehenderit. Est, modi, tenetur. Tempora perferendis eveniet unde numquam cupiditate nam?</p>
+                        <div class="hr"></div>
+                        <p class="copyright">copyright @ngcooking 2015-2016</p>
+                    </div>
                 </div>
-            </form>
-		</div>
 
-		<button class="close popin-close"><span class="glyphicon glyphicon-remove"></span></button>
-	</div>
-	<div class="popin-backlayer"></div>
-</div>
-					<!-- SCRIPTS  -->
+            </div>
+        </footer>
+        <!-- FOOTER  -->
+    </div>
 
-<script type="text/javascript">
-	$(function(){
-		$("[data-popin-open]").click(function(){
-			var popin = $(this).attr("data-popin-open");
-			$("[data-popin='"+popin+"']").addClass("displayed");
-		});
-		$("[data-popin] .popin-backlayer, [data-popin]  .popin-close , [data-popin] .btn_continuer").click(function () {
-			$(this).parents(".popin").removeClass("displayed");
-		});
-	});
-</script>
-<script type="text/javascript" src="/lib/angular/angular.js"></script>
-<script type="text/javascript" src="/lib/angular/angular.min.js"></script>
-<script type="text/javascript" src="/lib/angular/angular-route.min.js"></script>
-<script type="text/javascript" src="/lib/angular/angular-cookies.js"></script>
-<script type="text/javascript" src="/js/app.js"></script>
-<script type="text/javascript" src="/js/controllers/loginController.js"></script>
-<script type="text/javascript" src="/js/filters/recetteFilter.js"></script>
-<script type="text/javascript" src="/js/filters/DisplayFilter.js"></script>
-<script type="text/javascript" src="/js/filters/StatusFilter.js"></script>
-<script type="text/javascript" src="/js/filters/IngredientFilter.js"></script>
-<script type="text/javascript" src="/js/services/loginService.js"></script>
-<script type="text/javascript" src="/js/services/GetObjectService.js"></script>
-<script type="text/javascript" src="/js/services/PostJsonData.js"></script>
-<script type="text/javascript" src="/js/services/getJsonFile.js"></script>
-<script type="text/javascript" src="/js/services/fileUploadService.js"></script>
-<script type="text/javascript" src="/js/services/RecettesService.js"></script>
-<script type="text/javascript" src="/js/directives/filemodel.js"></script>
+    <div class="popin " data-popin="connect_popin" ng-hide="isConnected">
+        <div class="popin-content">
+            <div class="popin-scroll">
+                <p class="popin-title" ng-click="setHideLogin()">Connexion</p>
+                <form action="" name="loginform" novalidate ng-hide="hideLogin">
+                    <p>
+                        <label for="co_user" class="fwb">Identifiant (email)</label>
+                        <input id="co_user" class="wide ng-dirty ng-invalid" type="email" required ng-model="username" placeholder="username@example.com" />
+                    </p>
+                    <p>
+                        <label for="co_pwd" class="fwb">Mot de passe</label>
+                        <input id="co_pwd" class="wide ng-dirty ng-invalid" type="password" required ng-model="password" placeholder="tape your password here" />
+
+                    </p>
+                    <p class="ac nm mt2">
+                        <button type="submit" class="btn btn_big btn_color1" ng-disabled="loginform.$invalid" ng-click="submit()"><span class="glyphicon glyphicon-ok"></span><span class="fwb uc"></span>Valider</button>
+                    </p>
+                    <!-- Afficher au clic sur "valider ma recette" si certains éléments sont manquants -->
+                    <div class="col-xs-12" ng-hide="hideLoginError">
+                        <p class="ac mt2 tb">
+                            <span class="glyphicon glyphicon-exclamation-sign color2"></span>
+                            <span>Woops ! erreur inscription</span>
+                        </p>
+                        <p class="ac">{{errorMessage}}</p>
+                    </div>
+                </form>
+                <p class="popin-title" ng-click="setHideInsc()">Inscrivez-vous</p>
+                <form action="" name="inscriptionform" novalidate ng-hide="hideIscription">
+                    <p>
+                        <label for="co_user" class="fwb">Identifiant (email)</label>
+                        <input id="co_user" class="wide ng-dirty ng-invalid" type="email" required ng-model="newUsername" placeholder="username@example.com" />
+                    </p>
+                    <p>
+                        <label for="co_pwd" class="fwb">Mot de passe</label>
+                        <input id="co_pwd" class="wide ng-dirty ng-invalid" type="password" required ng-model="newPassword" placeholder="tape your password here" />
+                        <label for="co_pwd" class="fwb">Valider votre mot de passe</label>
+                        <input id="co_pwd" class="wide ng-dirty ng-invalid" type="password" required ng-model="validPassword" placeholder="valid your password here" />
+                    </p>
+                    <p class="ac nm mt2">
+                        <button type="submit" class="btn btn_big btn_color1" ng-disabled="inscriptionform.$invalid" ng-click="submitInscription()"><span class="glyphicon glyphicon-ok"></span><span class="fwb uc"></span>Inscription</button>
+                    </p>
+                    <!-- Afficher au clic sur "valider ma recette" lorsque tout s'est bien déroulé -->
+                    <div class="col-xs-12" ng-show="validationStatus === 'validated'">
+                        <p class="ac mt2 tb">
+                            <span class="glyphicon glyphicon-thumbs-up color3"></span>
+                            <span>Votre inscription est pris en compte: veuillez remplir votre profil !</span>
+                        </p>
+                        <p class="ac">
+                            <a class="btn btn_color1 btn_continuer" href="#/inscription"><span class="glyphicon glyphicon-cutlery"></span><span>Continuer mon inscription</span></a>
+                        </p>
+                    </div>
+                    <!-- Afficher au clic sur "valider ma recette" si certains éléments sont manquants -->
+                    <div class="col-xs-12" ng-show="validationStatus === 'notValidated'">
+                        <p class="ac mt2 tb">
+                            <span class="glyphicon glyphicon-exclamation-sign color2"></span>
+                            <span>Woops ! erreur inscription</span>
+                        </p>
+                        <p class="ac">{{errorInscriptionMessage}}</p>
+                    </div>
+                </form>
+            </div>
+
+            <button class="close popin-close"><span class="glyphicon glyphicon-remove"></span></button>
+        </div>
+        <div class="popin-backlayer"></div>
+    </div>
+    <!-- SCRIPTS  -->
+
+    <script type="text/javascript">
+        $(function () {
+            $("[data-popin-open]").click(function () {
+                var popin = $(this).attr("data-popin-open");
+                $("[data-popin='" + popin + "']").addClass("displayed");
+            });
+            $("[data-popin] .popin-backlayer, [data-popin]  .popin-close , [data-popin] .btn_continuer").click(function () {
+                $(this).parents(".popin").removeClass("displayed");
+            });
+        });
+    </script>
+    <script type="text/javascript" src="/lib/angular/angular.js"></script>
+    <script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+    <script type="text/javascript" src="/lib/angular/angular-route.min.js"></script>
+    <script type="text/javascript" src="/lib/angular/angular-cookies.js"></script>
+    <script type="text/javascript" src="/lib/angular/ng-file-upload.js"></script>
+    <script type="text/javascript" src="/js/app.js"></script>
+    <script type="text/javascript" src="/js/controllers/loginController.js"></script>
+    <script type="text/javascript" src="/js/filters/recetteFilter.js"></script>
+    <script type="text/javascript" src="/js/filters/DisplayFilter.js"></script>
+    <script type="text/javascript" src="/js/filters/StatusFilter.js"></script>
+    <script type="text/javascript" src="/js/filters/IngredientFilter.js"></script>
+    <script type="text/javascript" src="/js/services/loginService.js"></script>
+    <script type="text/javascript" src="/js/services/GetObjectService.js"></script>
+    <script type="text/javascript" src="/js/services/PostJsonData.js"></script>
+    <script type="text/javascript" src="/js/services/getJsonFile.js"></script>
+    <script type="text/javascript" src="/js/services/fileUploadService.js"></script>
+    <script type="text/javascript" src="/js/services/RecettesService.js"></script>
+    <script type="text/javascript" src="/js/directives/filemodel.js"></script>
 
 
 
-<!-- SCRIPTS  -->
+    <!-- SCRIPTS  -->
 
 
 </body>

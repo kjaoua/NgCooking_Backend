@@ -25,12 +25,17 @@
 									<div class="col-xs-6">
 										<p class="line">
 											<label for="">Photo de la recette</label>
-											<input type="file" class="mb0">
+                                            <input type="file" ngf-select ng-model="picFile" name="file"
+                                                   accept="image/*" ngf-max-size="2MB" required
+                                                   ngf-model-invalid="errorFile" ng-click="uploadPic(picFile)">
+                                            <!--<button ng-disabled="!addRecetteForm.$valid" ng-click="uploadPic(picFile)">Choisissez un fichier</button>-->
 										</p>
 										<p class="line ac">
-											<img class="current_img" src="img/recette_placeholder.jpg" alt="Visuel recette" >
+											<img ng-hide="addRecetteForm.file.$valid" class="current_img" src="img/recette_placeholder.jpg" alt="Visuel recette" >
+                                            <img ng-show="addRecetteForm.file.$valid" ngf-thumbnail="picFile" class="thumb"> 
 
 										</p>
+                                       
 									</div>
 									<div class="col-xs-12">
 										<div class="hr mt2 mb2"></div>

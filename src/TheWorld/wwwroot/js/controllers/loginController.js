@@ -1,6 +1,6 @@
 'use strict';
 
-ngCooking.controller("loginController", function loginController($scope, $location, $cookies, $rootScope, getJsonData,$route) {
+ngCooking.controller("loginController", function loginController($scope, $location, $cookies, $rootScope, getJsonData, $route) {
 
     getJsonData.getCommunity().then(function (response) {
         $scope.logins = response.data;
@@ -21,6 +21,7 @@ ngCooking.controller("loginController", function loginController($scope, $locati
     $scope.setConnexion = function (connected) {
         $scope.isConnected = connected != undefined ? connected : false;
     };
+  
     $scope.discnx = function () {
         $scope.setConnexion(false);
         $rootScope.loggedIn = false;

@@ -1,6 +1,6 @@
 'use strict' ;
 
-var ngCooking = angular.module("ngCooking",['ngRoute', 'ngCookies']);
+var ngCooking = angular.module("ngCooking", ['ngRoute', 'ngCookies','ngFileUpload']);
 // configure our routes
 ngCooking.config(function($routeProvider) {
     $routeProvider
@@ -352,7 +352,7 @@ ngCooking.controller("recettes_detailsCTRL", function($scope,getObjectService, $
         $scope.dispNbre+=5;
     };
 });
-ngCooking.controller("recette_newCTRL",function($scope,getJsonData,$http){
+ngCooking.controller("recette_newCTRL", function ($scope, getJsonData, $http, Upload) {
     getJsonData.getCategories().then(function(response) {
         $scope.categories = response.data;
 
@@ -422,6 +422,24 @@ ngCooking.controller("recette_newCTRL",function($scope,getJsonData,$http){
             return sumCalories;
 
         };
+        $scope.uploadPic = function (file) {
+            file.upload = Upload.upload({
+                url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
+                data: { username: $scope.username, file: file },
+            });
+
+            file.upload.then(function (response) {
+                $timeout(function () {
+                    file.result = response.data;
+                });
+            }, function (response) {
+                if (response.status > 0)
+                    $scope.errorMsg = response.status + ': ' + response.data;
+            }, function (evt) {
+                // Math.min is to fix IE which reports 200% sometimes
+                file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+            });
+        };
         $scope.validationStatus = "notMontionned";
         $scope.submit=function(){
             if(($scope.ingredientList.length >2)&&($scope.ingredientList.length<=10)){
@@ -487,22 +505,40 @@ ngCooking.controller("HomeController", function HomeController($scope, $http,get
 
 
 });
-ngCooking.controller("inscriptionCTRL", function ($scope, $http, $location, $cookies, $rootScope, fileUpload, $route, postJsonData) {
+ngCooking.controller("inscriptionCTRL", function ($scope, $http, $location, $cookies, $rootScope, fileUpload, $route, postJsonData, Upload) {
     $scope.newUsername = $cookies.get('newUsername');
     $scope.newPassword = $cookies.get('newPassword');
     $scope.newUser = [{}];
     $scope.errorInscriptionMessage = "";
     $scope.validationStatus = "notMontionned";
     $scope.disableSubmit = false;
-    $scope.uploadFile = function () {
-        var file = $scope.myFile;
+    $scope.uploadPic = function (file) {
+        file.upload = Upload.upload({
+            url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
+            data: { username: $scope.username, file: file },
+        });
 
-        console.log('file is ');
-        console.dir(file);
-
-        var uploadUrl = "/api/Communities";
-        fileUpload.uploadFileToUrl(file, uploadUrl);
+        file.upload.then(function (response) {
+            $timeout(function () {
+                file.result = response.data;
+            });
+        }, function (response) {
+            if (response.status > 0)
+                $scope.errorMsg = response.status + ': ' + response.data;
+        }, function (evt) {
+            // Math.min is to fix IE which reports 200% sometimes
+            file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+        });
     };
+    //$scope.uploadFile = function () {
+    //    var file = $scope.myFile;
+
+    //    console.log('file is ');
+    //    console.dir(file);
+
+    //    var uploadUrl = "/api/Communities";
+    //    fileUpload.uploadFileToUrl(file, uploadUrl);
+    //};
     $scope.submit = function () {
         $scope.newUser = [{
             "firstname": $scope.firstname,
@@ -511,7 +547,7 @@ ngCooking.controller("inscriptionCTRL", function ($scope, $http, $location, $coo
             "email": $scope.newUsername,
             "password": $scope.newPassword,
             "level": $scope.selectLevel,
-            "picture": "img/users/" + $scope.myFile.name,
+            "picture": "img/users/" + $scope.picFile.name,
             "city": $scope.city,
             "birth": $scope.birth,
             "bio": $scope.bio

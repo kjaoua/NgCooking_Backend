@@ -47,11 +47,13 @@
                 <div class="col-xs-6">
                     <p class="line">
                         <label for="">Photo du profil</label>
-                        <input type="file" class="mb0" file-model="myFile">
-                        <button ng-click="uploadFile()">upload</button>
+                        <input type="file" ngf-select ng-model="picFile" name="file"
+                               accept="image/*" ngf-max-size="2MB" required
+                               ngf-model-invalid="errorFile" ng-click="uploadPic(picFile)">
                     </p>
                     <p class="line ac">
-                        <img class="current_img" ng-src="img/recette_placeholder.jpg" alt="Visuel profil">
+                        <img ng-hide="signUpForm.file.$valid" class="current_img" src="img/recette_placeholder.jpg" alt="Visuel recette">
+                        <img ng-show="signUpForm.file.$valid" ngf-thumbnail="picFile" class="thumb"> 
                     </p>
                 </div>
                 
